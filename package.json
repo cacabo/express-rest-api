@@ -1,0 +1,17 @@
+{
+  "name": "express-rest-api",
+  "version": "1.0.0",
+  "description": "Practice building an express rest api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "rest",
+    "api"
+  ],
+  "author": "Cameron Cabo",
+  "license": "MIT"
+}
