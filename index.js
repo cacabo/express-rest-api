@@ -16,12 +16,6 @@ app.use(welcomeRoutes);
 // Configure question routes
 app.use('/questions', questionsRoutes);
 
-// Middleware (this is just for experimentation)
-app.use(function(req, res, next) {
-  // Call the next middleware function
-  next();
-});
-
 // Find the proper port to listen on
 var port = process.env.PORT || 3000;
 

@@ -60,7 +60,7 @@ router.put('/:qID/answers/:aID', function(req, res) {
 router.delete('/:qID/answers/:aID', function(req, res) {
   res.json({
     response: "You sent a DELETE request to /answers",
-    questionID: req.params.qID,s
+    questionID: req.params.qID,
     answerID: req.params.aID,
   });
 });
@@ -71,7 +71,7 @@ router.delete('/:qID/answers/:aID', function(req, res) {
 // POST /questinos/:qID/answerrs/:aID/downvote
 router.post("/:qID/answers/:aID/:dir", function(req, res) {
   res.json({
-    response: "You sent a POST request to " + req.params.dir + " an answer with ID " + req.parmas.aID,
+    response: "You sent a POST request to " + req.params.dir + " an answer with ID " + req.params.aID,
     questionID: req.params.qID,
     answerID: req.params.aID,
     vote: req.params.dir,
