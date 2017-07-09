@@ -4,7 +4,7 @@
   "description": "Practice building an express rest api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "express",
@@ -15,9 +15,7 @@
   "author": "Cameron Cabo",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3"
-  },
-  "scripts": {
-    "start": "node index.js"
   }
 }
