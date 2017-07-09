@@ -5,9 +5,15 @@ var app = express();
 var welcomeRoutes = require('./routes/welcome');
 var questionsRoutes = require('./routes/questions');
 var jsonParser = require('body-parser').json;
+var logger = require('morgan');
 
+// Useful status codes for API responses
+app.use(logger("dev"));
+// JSON parser for express
 app.use(jsonParser());
+// Configure general routes
 app.use(welcomeRoutes);
+// Configure question routes
 app.use('/questions', questionsRoutes);
 
 // Middleware (this is just for experimentation)
