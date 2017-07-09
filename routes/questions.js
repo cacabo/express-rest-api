@@ -49,8 +49,8 @@ router.post('/:qID/answers', function(req, res) {
 router.put('/:qID/answers/:aID', function(req, res) {
   res.json({
     response: "You sent a PUT request to /answers",
-    answerID: req.params.aID,
     questionID: req.params.qID,
+    answerID: req.params.aID,
     body: req.body,
   });
 });
@@ -59,9 +59,22 @@ router.put('/:qID/answers/:aID', function(req, res) {
 // Delete an answer to a question
 router.delete('/:qID/answers/:aID', function(req, res) {
   res.json({
-    response: "You sent a DELETE request to /amswers",
+    response: "You sent a DELETE request to /answers",
+    questionID: req.params.qID,s
     answerID: req.params.aID,
+  });
+});
+
+// UPVOTE AND DOWNVOTE
+
+// POST /questions/:qID/answers/:aID/upvote
+// POST /questinos/:qID/answerrs/:aID/downvote
+router.post("/:qID/answers/:aID/:dir", function(req, res) {
+  res.json({
+    response: "You sent a POST request to " + req.params.dir + " an answer with ID " + req.parmas.aID,
     questionID: req.params.qID,
+    answerID: req.params.aID,
+    vote: req.params.dir,
   });
 });
 
