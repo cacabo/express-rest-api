@@ -2,9 +2,11 @@
 
 var express = require("express");
 var app = express();
+var routes = require('./routes');
 var jsonParser = require('body-parser').json;
 
 app.use(jsonParser());
+app.use('/questions', routes);
 
 // Middleware (this is just for experimentation)
 app.use(function(req, res, next) {
