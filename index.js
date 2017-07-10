@@ -30,7 +30,16 @@ db.once('open', function() {
   console.log('db connection successful');
 });
 
-
+// Set up the API to be used by the browser
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Controll-Allow-Methods', 'PUT,POST,DELTE');
+    return res.status(200).json({});
+  }
+  next();
+})
 
 // Configure general routes
 app.use(welcomeRoutes);
