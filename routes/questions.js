@@ -69,7 +69,16 @@ router.delete('/:qID/answers/:aID', function(req, res) {
 
 // POST /questions/:qID/answers/:aID/upvote
 // POST /questinos/:qID/answerrs/:aID/downvote
-router.post("/:qID/answers/:aID/:dir", function(req, res) {
+router.post("/:qID/answers/:aID/:dir",
+  function(req, res, next) {
+    if(req.params.dir.search(/^(upvote|downvote)$/) === -1) {
+      var e = new Error("Not found error (404)");
+      e.status = 404;
+      next(e);
+    } else {
+      next();
+    }
+  }, function(req, res) {
   res.json({
     response: "You sent a POST request to " + req.params.dir + " an answer with ID " + req.params.aID,
     questionID: req.params.qID,
