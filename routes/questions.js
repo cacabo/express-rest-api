@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var question = require("../db/models").Question;
+var Question = require("../db/models").Question;
 
 router.param("qID", function(req, res, next, id) {
     Question.findById(id, function(e, question) {
@@ -32,14 +32,12 @@ router.param("aID", function(req, res, next, id) {
 // GET /questions
 // Return all questions
 router.get('/', function(req, res, next) {
-    Question.find({}, null, {
-        sort: {
-            createdAt: -1
-        }
-    }, function(e, questions) {
-        if (e) return next(e);
-        res.json(questions);
-    });
+    Question.find({})
+        .sort({createdAt: -1})
+        .exec(function(err, questions){
+          if(err) return next(err);
+          res.json(questions);
+        });
 });
 
 // POST /questions
