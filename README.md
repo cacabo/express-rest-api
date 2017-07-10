@@ -22,8 +22,8 @@ Practice building an Express REST API
 * `POST /questions/:question_id/answers/:answer_id/downvote` downvote an answer
 
 ### Todo
-[ ] Implement the API with a web app with React
-[ ] Implement the API with an application via React Native
-[ ] Implement a `Users` model with proper authentication
-[ ] Add ability to edit and delete questions
-[ ] Deploy the API and its database in a production environment
+- [ ] Implement the API with a web app with React
+- [ ] Implement the API with an application via React Native
+- [ ] Implement a `Users` model with proper authentication
+- [ ] Add ability to edit and delete questions
+- [ ] Deploy the API and its database in a production environment
