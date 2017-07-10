@@ -14,21 +14,21 @@ var sortAnswers = function(a, b) {
 
 var AnswerSchema = new Schema({
   title: String,
-  text: String;
+  text: String,
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now},
-  votes: {type, Number, default: 0},
+  votes: {type: Number, default: 0},
 });
 
 
 // Instance method for updating an answer
-AnswerSchema.methods("update", function(updates, callback) {
+AnswerSchema.method("update", function(updates, callback) {
   Object.assign(this, updates, {updatedAt: new Date()});
   this.parent().save(callback);
 });
 
 // Instance method for upvoting or downvoting an answer
-AnswerSchema.methods("vote", function(vote, callback) {
+AnswerSchema.method("vote", function(vote, callback) {
   if (vote === "upvote") {
     this.votes += 1;
   } else {
