@@ -2,23 +2,8 @@
 
 var mongoose = require('mongoose');
 
-
-// mongoose.connection.on('error', function(){
-//   console.log('error connecting to db');
-// });
-
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/sandbox');
-// mongoose.connect(process.env.MONGODB_URI);
-
-// var promise = mongoose.connect('mongodb://localhost:27017/sandbox', {
-//   useMongoClient: true,
-//   /* other options */
-// });
-//
-// promise.then(function(db) {});
-
-
 
 var db = mongoose.connection;
 
@@ -28,15 +13,15 @@ db.on('error', function(e) {
 
 db.once('open', function() {
   console.log('db connection successful');
-  // All datbase communication goes here
+  // All database communication goes here
 
   var Schema = mongoose.Schema;
   var AnimalSchema = new Schema({
-    type: String,
-    size: String,
-    color: String,
-    mass: Number,
-    name: String,
+    type:  {type: String, default: "goldfish"},
+    size:  {type: String, default: "small"},
+    color: {type: String, default: "orange"},
+    mass:  {type: Number, default: 5},
+    name:  {type: String, default: "Marty"},
   });
 
   var Animal = mongoose.model('Animal', AnimalSchema);
@@ -49,11 +34,44 @@ db.once('open', function() {
     name: "Lawrence",
   });
 
-  elephant.save(function(e) {
-    if (e) console.error("Save failed:", err);
-    else console.log("Saved!");
-    db.close(function() {
-      console.log("DB connection closed");
+  var whale = new Animal({
+    type: "whale",
+    size: "big",
+    color: "blue",
+    mass: 19500,
+    name: "Vinny",
+  });
+
+  var goldfish = new Animal({});
+
+  Animal.remove({}, function(e) {
+    if (e) {
+      console.error(e);
+    }
+    elephant.save(function(e) {
+      if (e) {
+        console.error("Save failed:", e);
+      }
+      goldfish.save(function(e) {
+        if (e) {
+          console.error("Save failed:", e);
+        }
+        whale.save(function(e) {
+          if (e) {
+            console.error(e);
+          }
+          Animal.find({size: "big"}, function(e, animals) {
+            animals.forEach(function(animal) {
+              console.log(animal.name + " the " + animal.color + " " + animal.type);
+            });
+            db.close(function() {
+              console.log("db connection closed");
+            });
+          });
+        });
+      });
     });
   });
+
+
 });
